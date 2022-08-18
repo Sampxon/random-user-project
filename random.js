@@ -23,13 +23,33 @@ const fetchUser = async () => {
   //!destructure
   const person = data.results[0];
   console.log(person);
+  const { email, phone } = person;
+  const { password } = person.login;
+  const { first, last } = person.name;
+  const { age } = person.dob;
+  const { name: street, number } = person.location.street;
+  const { large: image } = person.picture;
+  return {
+    phone,
+    email,
+    password,
+    age,
+    street,
+    number,
+    image,
+    first,
+    last,
+  };
 };
 fetchUser();
 
-const showUser = () => {
+const showUser = async () => {
   //get user from api
   //display user
+  const data = await fetchUser();
+  console.log(data);
 };
+showUser();
 
 window.addEventListener('DOMContentLoaded', showUser);
 btn.addEventListener('click', showUser);
