@@ -19,7 +19,6 @@ const URL = 'https://randomuser.me/api/';
 const fetchUser = async () => {
   const response = await fetch(URL);
   const data = await response.json();
-  console.log(data);
   //!destructure
   const person = data.results[0];
   console.log(person);
@@ -40,16 +39,32 @@ const fetchUser = async () => {
     first,
     last,
   };
+  // value.innerHTML = `<p class="user-value">${last} ${first}</p>`;
 };
-fetchUser();
 
-const showUser = async () => {
+const showUser = async (user) => {
   //get user from api
   //display user
+  //fetchUser().then((data)=>{})
   const data = await fetchUser();
   console.log(data);
+  console.log('show user');
+  //display user
+  // const displayUser = user.map((item) => {});
+  img.src = data.image;
+  value.textContent = `${data.last} ${data.first}`;
+  allBtns[0].classList.add('active');
+  allBtns.forEach((Btns) => {
+    const label = Btns.dataset.label;
+    Btns.addEventListener('click', () => {
+      console.log(data[label]);
+      title.textContent = `my ${label} is`;
+      value.textContent = data[label];
+    });
+  });
 };
-showUser();
+
+//can i use '.this' in the above ?????
 
 window.addEventListener('DOMContentLoaded', showUser);
 btn.addEventListener('click', showUser);
