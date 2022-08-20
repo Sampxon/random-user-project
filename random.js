@@ -15,56 +15,46 @@ const btn = getElement('.btn');
 const allBtns = [...document.querySelectorAll('.icon')];
 const URL = 'https://randomuser.me/api/';
 
-//fetch
 const fetchUser = async () => {
   const response = await fetch(URL);
   const data = await response.json();
+  console.log(data);
+  const neededUser = data.results[0];
+  console.log(neededUser);
   //!destructure
-  const person = data.results[0];
-  console.log(person);
-  const { email, phone } = person;
-  const { password } = person.login;
-  const { first, last } = person.name;
-  const { age } = person.dob;
-  const { name: street, number } = person.location.street;
-  const { large: image } = person.picture;
-  return {
-    phone,
-    email,
-    password,
-    age,
-    street,
-    number,
-    image,
-    first,
-    last,
-  };
-  // value.innerHTML = `<p class="user-value">${last} ${first}</p>`;
+  //image, name, phone, password, location, age, email, firstName, lastName
+  const { email, phone } = neededUser;
+  const { name: street } = neededUser.location.street;
+  const { large: image } = neededUser.picture;
+  const { first, last } = neededUser.name;
+  const { age } = neededUser.dob;
+  const { password } = neededUser.login;
+  console.log({ email, phone, street, image, first, last });
+  return { email, phone, street, image, first, last, age, password };
 };
 
-const showUser = async (user) => {
-  //get user from api
-  //display user
-  //fetchUser().then((data)=>{})
+const displayUser = async () => {
   const data = await fetchUser();
   console.log(data);
-  console.log('show user');
-  //display user
-  // const displayUser = user.map((item) => {});
-  img.src = data.image;
   value.textContent = `${data.last} ${data.first}`;
-  allBtns[0].classList.add('active');
+  img.src = data.image;
   allBtns.forEach((Btns) => {
     const label = Btns.dataset.label;
-    Btns.addEventListener('click', () => {
-      console.log(data[label]);
-      title.textContent = `my ${label} is`;
+    console.log(label);
+
+    Btns.addEventListener('click', (btn) => {
+      title.textContent = `My ${label} is`;
       value.textContent = data[label];
+      removeActives();
+      Btns.classList.add('active');
     });
   });
 };
+const removeActives = () => {
+  allBtns.forEach((singleBtn) => {
+    singleBtn.classList.remove('active');
+  });
+};
 
-//can i use '.this' in the above ?????
-
-window.addEventListener('DOMContentLoaded', showUser);
-btn.addEventListener('click', showUser);
+window.addEventListener('DOMContentLoaded', displayUser);
+btn.addEventListener('click', displayUser);

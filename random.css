@@ -24,7 +24,7 @@ Variables
   --clr-primary-7: hsl(205, 90%, 76%);
   --clr-primary-8: hsl(205, 86%, 81%);
   --clr-primary-9: hsl(205, 90%, 88%);
-  --clr-primary-10: hsl(205, 100%, 96%);
+  --clr-primary-10: hsl(205, 25%, 81%);
   /* darkest grey - used for headings */
   --clr-grey-1: hsl(209, 61%, 16%);
   --clr-grey-2: hsl(211, 39%, 23%);
@@ -37,7 +37,8 @@ Variables
   --clr-grey-8: hsl(210, 31%, 80%);
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
-  --clr-white: #fff;
+  --clr-white: rgba(240, 204, 143, 0.463);
+  /* !edited */
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --clr-green-dark: hsl(125, 67%, 44%);
@@ -169,10 +170,16 @@ p {
 /* container */
 .block {
   min-height: 50vh;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 .bcg-black {
-  background: #2c2e31;
+  /* background: #857456; */
+  background: linear-gradient(
+    to bottom right,
+    rgba(163, 110, 19, 0.84),
+    rgba(184, 170, 144, 0.657)
+  );
+  /* !edited */
 }
 
 .container {
@@ -186,7 +193,7 @@ p {
   text-align: center;
   padding: 1.5rem;
   box-shadow: var(--dark-shadow);
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
 }
 
 .container::before {
@@ -200,7 +207,7 @@ p {
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 .container img {
   width: 150px;
@@ -212,7 +219,7 @@ p {
   border: 1px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 2rem;
   box-shadow: var(--dark-shadow);
-  border: 1px solid blueviolet;
+  /* border: 1px solid blueviolet; */
 }
 
 .user-title {
@@ -222,7 +229,7 @@ p {
 .user-value {
   color: var(--clr-grey-1);
   font-size: 28px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .values-list {
   display: grid;
